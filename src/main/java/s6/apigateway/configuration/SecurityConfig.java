@@ -25,26 +25,23 @@ public class SecurityConfig {
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         http.csrf().disable()
                 .authorizeExchange()
-                .pathMatchers("/api/users/**", "/api/users/login").permitAll()  // Allow these paths
+                .pathMatchers("/api/users/**", "/api/users/login").permitAll()
                 .pathMatchers(HttpMethod.OPTIONS, "/**").permitAll()  // Allow CORS pre-flight OPTIONS requests
-                .pathMatchers(HttpMethod.POST, "/**").permitAll()  // Allow CORS pre-flight POST requests
-                .pathMatchers(HttpMethod.PUT, "/**").permitAll()  // Allow CORS pre-flight PUT requests
-                .pathMatchers(HttpMethod.GET, "/**").permitAll()  // Allow CORS pre-flight GET requests
-                .pathMatchers(HttpMethod.DELETE, "/**").permitAll()  // Allow CORS pre-flight DELETE requests
-                .anyExchange().authenticated();  // All other requests must be authenticated
+                .anyExchange().permitAll();
 
         return http.build();
     }
+
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Add your frontend origin
+        corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Your frontend origin
         corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
-        corsConfig.setAllowCredentials(true);
+        corsConfig.setAllowCredentials(true);  // Allow cookies and credentials
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", corsConfig);
+        source.registerCorsConfiguration("/**", corsConfig);  // Apply CORS settings to all endpoints
         return source;
     }
 }

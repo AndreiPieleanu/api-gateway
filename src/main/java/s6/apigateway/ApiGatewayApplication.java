@@ -18,16 +18,14 @@ public class ApiGatewayApplication {
 				.routes()
 				.route("follow-service", r -> r.path("/api/follow/**")
 						.uri("http://localhost:8081"))
-				.route("like-service", r -> r.path("/api/like/**")
+				.route("like-service", r -> r.path("/api/moderation/**")
 						.uri("http://localhost:8082"))
-				.route("moderation-service", r -> r.path("/api/moderation/**")
+				.route("moderation-service", r -> r.path("/api/notifications/**")
 						.uri("http://localhost:8083"))
 				.route("post-service", r -> r.path("/api/posts/**")
+						.uri("http://localhost:8084"))
+				.route("search-service", r -> r.path("/api/users/**")
 						.uri("http://localhost:8085"))
-				.route("search-service", r -> r.path("/api/search/**")
-						.uri("http://localhost:8086"))
-				.route("user-service", r -> r.path("/api/users/**")
-						.uri("http://localhost:8087"))
 				.build();
 	}
 
