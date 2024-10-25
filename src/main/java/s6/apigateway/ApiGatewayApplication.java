@@ -2,11 +2,12 @@ package s6.apigateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class ApiGatewayApplication {
 
 	public static void main(String[] args) {
@@ -17,15 +18,17 @@ public class ApiGatewayApplication {
 		return builder
 				.routes()
 				.route("follow-service", r -> r.path("/api/follow/**")
-						.uri("http://localhost:8081"))
-				.route("like-service", r -> r.path("/api/moderation/**")
-						.uri("http://localhost:8082"))
-				.route("moderation-service", r -> r.path("/api/notifications/**")
-						.uri("http://localhost:8083"))
+						.uri("http://follow-service-container:8081"))    // Use container name instead of localhost
+				.route("like-service", r -> r.path("/api/moderator/**")
+						.uri("http://like-service-container:8082"))      // Use container name instead of localhost
+				.route("friend-service", r -> r.path("/ws/**")
+						.uri("ws://friend-service-container:8083"))      // Use container name instead of localhost
+				.route("friend-service", r -> r.path("/api/notifications/**")
+						.uri("ws://friend-service-container:8083"))      // Use container name instead of localhost
 				.route("post-service", r -> r.path("/api/posts/**")
-						.uri("http://localhost:8084"))
+						.uri("http://post-service-container:8084"))      // Use container name instead of localhost
 				.route("search-service", r -> r.path("/api/users/**")
-						.uri("http://localhost:8085"))
+						.uri("http://user-service-container:8085"))      // Use container name instead of localhost
 				.build();
 	}
 

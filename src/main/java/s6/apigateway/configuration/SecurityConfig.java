@@ -25,7 +25,7 @@ public class SecurityConfig {
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         http.csrf().disable()
                 .authorizeExchange()
-                .pathMatchers("/api/users/**", "/api/users/login").permitAll()
+                .pathMatchers("/api/users/**", "/api/users/login", "/api/notifications/**").permitAll()
                 .pathMatchers(HttpMethod.OPTIONS, "/**").permitAll()  // Allow CORS pre-flight OPTIONS requests
                 .anyExchange().permitAll();
 
