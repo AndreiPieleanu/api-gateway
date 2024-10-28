@@ -17,10 +17,8 @@ public class ApiGatewayApplication {
 	public RouteLocator myRoutes(RouteLocatorBuilder builder) {
 		return builder
 				.routes()
-				.route("follow-service", r -> r.path("/api/follow/**")
-						.uri("http://follow-service-container:8081"))    // Use container name instead of localhost
-				.route("like-service", r -> r.path("/api/moderator/**")
-						.uri("http://like-service-container:8082"))      // Use container name instead of localhost
+				.route("moderator-service", r -> r.path("/api/moderator/**")
+						.uri("http://moderator-service-container:8082"))      // Use container name instead of localhost
 				.route("friend-service", r -> r.path("/ws/**")
 						.uri("ws://friend-service-container:8083"))      // Use container name instead of localhost
 				.route("friend-service", r -> r.path("/api/notifications/**")
