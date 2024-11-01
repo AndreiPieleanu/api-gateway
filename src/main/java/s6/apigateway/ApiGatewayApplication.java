@@ -15,6 +15,7 @@ public class ApiGatewayApplication {
 	}
 	@Bean
 	public RouteLocator myRoutes(RouteLocatorBuilder builder) {
+		// docker containers
 		return builder
 				.routes()
 				.route("moderator-service", r -> r.path("/api/moderator/**")
@@ -22,12 +23,26 @@ public class ApiGatewayApplication {
 				.route("friend-service", r -> r.path("/ws/**")
 						.uri("ws://friend-service-container:8083"))      // Use container name instead of localhost
 				.route("friend-service", r -> r.path("/api/notifications/**")
-						.uri("ws://friend-service-container:8083"))      // Use container name instead of localhost
+						.uri("http://friend-service-container:8083"))      // Use container name instead of localhost
 				.route("post-service", r -> r.path("/api/posts/**")
 						.uri("http://post-service-container:8084"))      // Use container name instead of localhost
 				.route("search-service", r -> r.path("/api/users/**")
 						.uri("http://user-service-container:8085"))      // Use container name instead of localhost
 				.build();
+		// localhost
+//		return builder
+//				.routes()
+//				.route("moderator-service", r -> r.path("/api/moderator/**")
+//						.uri("http://localhost:8082"))      // Use container name instead of localhost
+//				.route("friend-service", r -> r.path("/ws/**")
+//						.uri("ws://localhost:8083"))      // Use container name instead of localhost
+//				.route("friend-service", r -> r.path("/api/notifications/**")
+//						.uri("ws://localhost:8083"))      // Use container name instead of localhost
+//				.route("post-service", r -> r.path("/api/posts/**")
+//						.uri("http://localhost:8084"))      // Use container name instead of localhost
+//				.route("search-service", r -> r.path("/api/users/**")
+//						.uri("http://localhost:8085"))      // Use container name instead of localhost
+//				.build();
 	}
 
 }
