@@ -26,7 +26,7 @@ public class ApiGatewayApplication {
 						.uri("http://friend-service-container:8083"))      // Use container name instead of localhost
 				.route("post-service", r -> r.path("/api/posts/**")
 						.uri("http://post-service-container:8084"))      // Use container name instead of localhost
-				.route("search-service", r -> r.path("/api/users/**")
+				.route("user-service", r -> r.path("/api/users/**")
 						.uri("http://user-service-container:8085"))      // Use container name instead of localhost
 				.build();
 		// localhost
