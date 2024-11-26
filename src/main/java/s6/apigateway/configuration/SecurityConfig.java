@@ -36,7 +36,12 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowedOrigins(Arrays.asList(Constants.LOCALHOST_FRONTEND_URL, Constants.FRONTEND_DOCKER_CONTAINER, Constants.ALL)); // Your frontend origin
+        corsConfig.setAllowedOrigins(Arrays.asList(
+                Constants.KUBERNETES_FRONTEND_URL,
+                Constants.LOCALHOST_FRONTEND_URL,
+                Constants.FRONTEND_DOCKER_CONTAINER,
+                CorsConfiguration.ALL
+        ));
         corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         corsConfig.setAllowCredentials(true);  // Allow cookies and credentials
