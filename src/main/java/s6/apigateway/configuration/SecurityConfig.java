@@ -39,11 +39,10 @@ public class SecurityConfig {
         corsConfig.setAllowedOrigins(Arrays.asList(
                 Constants.KUBERNETES_FRONTEND_URL,
                 Constants.LOCALHOST_FRONTEND_URL,
-                Constants.FRONTEND_DOCKER_CONTAINER,
-                CorsConfiguration.ALL
+                Constants.FRONTEND_DOCKER_CONTAINER
         ));
         corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+        corsConfig.setAllowedHeaders(Arrays.asList("*"));
         corsConfig.setAllowCredentials(true);  // Allow cookies and credentials
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
