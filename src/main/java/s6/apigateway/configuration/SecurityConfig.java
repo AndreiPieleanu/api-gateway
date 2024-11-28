@@ -39,6 +39,7 @@ public class SecurityConfig {
         corsConfig.setAllowedOrigins(Arrays.asList(
                 Constants.KUBERNETES_FRONTEND_URL,
                 Constants.LOCALHOST_FRONTEND_URL,
+                Constants.LOCALHOST_FRONTEND_URL_2,
                 Constants.FRONTEND_DOCKER_CONTAINER
         ));
         corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));

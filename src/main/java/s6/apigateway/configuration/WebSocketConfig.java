@@ -17,6 +17,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                 .setAllowedOrigins(
                         Constants.KUBERNETES_FRONTEND_URL,
                         Constants.LOCALHOST_FRONTEND_URL,
+                        Constants.LOCALHOST_FRONTEND_URL_2,
                         Constants.FRONTEND_DOCKER_CONTAINER
                 )
                 .withSockJS();

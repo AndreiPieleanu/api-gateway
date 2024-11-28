@@ -19,15 +19,15 @@ public class ApiGatewayApplication {
 		return builder
 				.routes()
 				.route("moderator-service", r -> r.path("/api/moderator/**")
-						.uri("http://moderator-service-container:8082"))      // Use container name instead of localhost
+						.uri("http://moderator-service:8082"))      // Use container name instead of localhost
 				.route("friend-service", r -> r.path("/ws/**")
-						.uri("ws://friend-service-container:8083"))      // Use container name instead of localhost
+						.uri("ws://friend-service:8083"))      // Use container name instead of localhost
 				.route("friend-service", r -> r.path("/api/notifications/**")
-						.uri("http://friend-service-container:8083"))      // Use container name instead of localhost
+						.uri("http://friend-service:8083"))      // Use container name instead of localhost
 				.route("post-service", r -> r.path("/api/posts/**")
-						.uri("http://post-service-container:8084"))      // Use container name instead of localhost
+						.uri("http://post-service:8084"))      // Use container name instead of localhost
 				.route("user-service", r -> r.path("/api/users/**")
-						.uri("http://user-service-container:8085"))      // Use container name instead of localhost
+						.uri("http://user-service:8085"))      // Use container name instead of localhost
 				.build();
 	}
 
