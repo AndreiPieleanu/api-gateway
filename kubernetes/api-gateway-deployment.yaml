@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - image: trainingtexas/api-gateway:latest
-          name: api-gateway-container
+          name: api-gateway
           ports:
             - containerPort: 8080
               protocol: TCP
